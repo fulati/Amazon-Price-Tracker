@@ -30,7 +30,9 @@ export async function scrapeAmazonProduct(url: string) {
 
     //Extract the product title
     const title = $("#productTitle").text().trim();
-    const currentPrice = $('span.a-offscreen:first').text().replace(/[^0-9.]/g, '');
+    const currentPrice = $("span.a-offscreen:first")
+      .text()
+      .replace(/[^0-9.]/g, "");
     //USED MY OWN STYLE instead of the tutorial
     // extractPrice(
     //   $(".priceToPay span.a-price-whole:first"),
@@ -59,22 +61,31 @@ export async function scrapeAmazonProduct(url: string) {
 
     const currency = extractCurrency($(".a-price-symbol"));
 
-    const discountRate = $('.savingsPercentage:first').text().replace(/[-%]/g, '');
+    const discountRate = $(".savingsPercentage:first")
+      .text()
+      .replace(/[-%]/g, "");
 
-    const descriptions = $("#feature-bullets .a-list-item").map(function() {
-      return '• ' + $(this).text().trim();
-    }).get().join('\n');
+    const description = $("#feature-bullets .a-list-item")
+      .map(function () {
+        return "• " + $(this).text().trim();
+      })
+      .get()
+      .join("\n");
 
-    const reviewsCount = $('#acrCustomerReviewText:first').text().replace(/[^0-9]/g, '');
+    const reviewsCount = $("#acrCustomerReviewText:first")
+      .text()
+      .replace(/[^0-9]/g, "");
 
-    const stars = $('.a-icon-alt:first').text().replace(/[^0-9.]/g, '');
+    const stars = $(".a-icon-alt:first")
+      .text()
+      .replace(/[^0-9.]/g, "");
 
-   const category = $('span.nav-a-content:first').text().trim();
+    const category = $("span.nav-a-content:first").text().trim();
 
     //Construct the product object with scraped information
     const data = {
-      url, 
-      currency: currency || '$',
+      url,
+      currency: currency || "$",
       image: imageUrls[0],
       title,
       currentPrice: Number(currentPrice) || Number(originalPrice),
@@ -85,14 +96,13 @@ export async function scrapeAmazonProduct(url: string) {
       reviewsCount: Number(reviewsCount),
       stars: Number(stars),
       isOutOfStock: outOfStock,
-      descriptions,
+      description: description,
       lowestPrice: Number(currentPrice) || Number(originalPrice),
       highestPrice: Number(originalPrice) || Number(currentPrice),
       average: Number(currentPrice) || Number(originalPrice),
     };
 
     return data;
-
   } catch (error: any) {
     throw new Error(`Failed to scrape product: ${error.message}`);
   }
