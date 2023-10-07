@@ -25,6 +25,7 @@ const Home = () => {
 
             <p className='mt-6'>Powerful, self-serve product and growth analytics to help you convert, engage, and retain more.</p>
 
+            <Searchbar />
           </div>
 
           HeroCarousel
