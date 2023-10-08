@@ -26,12 +26,11 @@ const Home = async () => {
 
             <h1 className="head-text">
               Unleash the Power of
-              <span className="text-primary"> PriceWise</span>
+              <span className="text-primary"> Amazon Price Tracker</span>
             </h1>
 
             <p className="mt-6">
-              Powerful, self-serve product and growth analytics to help you
-              convert, engage, and retain more.
+            Track Amazon prices effortlessly, get instant alerts, and make savvy purchases with our intuitive Price Tracker.
             </p>
 
             <Searchbar />
@@ -45,7 +44,7 @@ const Home = async () => {
         <h2 className="section-text">Trending</h2>
 
         <div className="flex flex-wrap gap-x-8 gap-y-16">
-          {allProducts?.map((product) => (
+          {allProducts?.reverse().map((product) => (
             <ProductCard key={product._id} product={product}/>
           ))}
         </div>

@@ -10,7 +10,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "AmaTracker",
+  title: "Amazon Price Tracker",
   description:
     "Track amazon product prices and save money on your online shopping",
 };
